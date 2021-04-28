@@ -6,6 +6,7 @@
     if(($emailUsuario == 'ramon@teste.com') && ($senha == '123')){
         $_SESSION['logado'] = TRUE;
         $_SESSION['emailUsuario'] = $emailUsuario;
+        $_SESSION['primeiroAcessoAposLogin'] = TRUE;
         echo "<script>
                 window.location = 'avioes.php';
             </script>"; 
