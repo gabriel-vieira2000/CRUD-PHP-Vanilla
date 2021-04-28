@@ -16,53 +16,60 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD dos Aviões</title>
+    <meta name="description" content="Página criada para aprendizagem de um Crud com a linguagem PHP">
+    <meta name="author" content="Gabriel Vieira Cardoso,Matheus Ribeiro da Silva">
+    <title>MAG AVIATION</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <style>
-        form > label, button{
-            margin-top:10px;
-        }
-
-        button{
-            font-size: 20px;
-        }
-    </style>
 </head>
 <body>
-    <main class="container-fluid">
-        <div class="row justify-content-md-center" style="margin-top:3em;">
-            <div class="col-xl-8 col-sm-12">
-                <form action="salva_dados.php" method="POST" class="form-control">
-                    <h1 class="lead"><b>Cadastre um novo Modelo de Avião na Base de dados!</b></h1>
-                    <label for="inputNomeModelo">Nome do Modelo:</label>
-                    <input type="text" class="form-control" name="inputNomeModelo" placeholder="Insira o Nome do Modelo do Avião">
-                    <label for="inputNomeFabricante">Nome da Fabricante:</label>
-                    <input type="text" class="form-control" name="inputNomeFabricante" placeholder="Insira o Nome do Fabricante do Avião">
-                    <label for="inputDataFabricacao">Data de Fabricação:</label>
-                    <input type="date" class="form-control" name="inputDataFabricacao" placeholder="Escolha a Data de Fabricação do Avião">
-                    <label for="inputCapacidadeMaxPassageiros">Capacidade Máxima de Passageiros:</label>
-                    <input type="number" class="form-control" name="inputCapacidadeMaxPassageiros" placeholder="Insira a Capacidade Máxima de Passageiros do Avião (permitido somente números)">
-                    <label for="">Está em uso atualmente:</label>
-                    <select name="selectEstaEmUso" class="form-control">
-                        <option value="1">Sim</option>
-                        <option value="0">Não</option>
-                    </select>
-                    <label for="inputDescricaoAdicional">Descrição Adicionais:</label>
-                    <textarea type="date" class="form-control" name="inputDescricaoAdicional" placeholder="Insira aqui mais alguma informação que você julgue necessária (limite de 150 caracteres)"></textarea>
-                    <button type="submit" class="btn btn-success btn-block">ENVIAR DADOS</button>
-                </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-bordered" style="margin-top:10px">
+                    <thead>
+                        <tr>
+                            <th scope="col">Modelo do Avião</th>
+                            <th scope="col">Fabricante</th>
+                            <th scope="col">Data de Fabricação</th>
+                            <th scope="col">Capacidade Máxima de Passageiros</th>
+                            <th scope="col">Está em Uso</th>
+                            <th scope="col">Descrição Adicional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            require('conexaoBD.php');
+                            $comandoSQL = "SELECT * FROM AVIOES ORDER BY nomeModelo";
+                            $respostaConsulta = mysqli_query($con, $comandoSQL);
+                            $num_linhas_consulta = mysqli_num_rows($respostaConsulta);
+                            if($num_linhas_consulta > 0){
+                                while($dados = mysqli_fetch_assoc($respostaConsulta)){
+                                    echo "<tr>   
+                                            <td scope='row'>".$dados['nomeModelo']."</td>   
+                                            <td>".$dados['nomeFabricante']."</td>
+                                            <td>".$dados['dataFabricacao']."</td> 
+                                            <td>".$dados['capacidadeMaximaPassageiros']."</td>";  
+                                            if($dados['estaEmUso']){
+                                                echo "<td style='background-color:green'>SIM</td>";
+                                            }else{
+                                                echo "<td style='background-color:green'>NÃO</td>";
+                                            }
+                                            echo "<td>".$dados['descricaoAdicional']."</td>                               
+                                        </tr>";
+                                }
+                            }else{
+                                echo "<tr class='text-center'><td colspan='6'> Não há registros cadastrados! </td></tr>";
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </main>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </div>
 </body>
 </html>

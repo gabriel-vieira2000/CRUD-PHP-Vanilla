@@ -12,19 +12,6 @@
     $dataFabricacao = str_replace("/", "-", $dataFabricacao);
     $dataFabricacaoSQL = date('Y-m-d', strtotime($dataFabricacao));
 
-    echo "<ul>";
-    echo "<h2>Dados do Avião Cadastrado</h2>";
-    echo "<li>{$nomeAviao}</li>";
-    echo "<li>{$dataFabricacao}</li>";
-    echo "<li>{$capacidadeMaxPassageiros}</li>";
-    echo "<li>{$estaEmUso}</li>";
-    if ($estaEmUso) {
-        echo "<li>Este avião está em uso! V</li>";
-    }else{
-        echo "<li>Este avião não está em uso! X</li>";
-    }
-    echo "<li>{$descricaoAdicional}</li>";
-
     $comandoSQL = "INSERT INTO AVIOES(nomeModelo, nomeFabricante, dataFabricacao, capacidadeMaximaPassageiros, estaEmUso, descricaoAdicional) 
     VALUES ('$nomeAviao', '$nomeFabricante', '$dataFabricacaoSQL', '$capacidadeMaxPassageiros', '$estaEmUso', '$descricaoAdicional')";
 
