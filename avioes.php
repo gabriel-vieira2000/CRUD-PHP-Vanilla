@@ -38,7 +38,7 @@
     <main class="container-fluid">
         <div class="row justify-content-md-center" style="margin-top:3em;">
             <div class="col-xl-8 col-sm-12">
-                <form action="" method="POST" class="form-control">
+                <form action="salva_dados.php" method="POST" class="form-control">
                     <h1 class="lead"><b>Cadastre um novo Modelo de Avião na Base de dados!</b></h1>
                     <label for="inputNomeModelo">Nome do Modelo:</label>
                     <input type="text" class="form-control" name="inputNomeModelo" placeholder="Insira o Nome do Modelo do Avião">
@@ -50,8 +50,8 @@
                     <input type="number" class="form-control" name="inputCapacidadeMaxPassageiros" placeholder="Insira a Capacidade Máxima de Passageiros do Avião (permitido somente números)">
                     <label for="">Está em uso atualmente:</label>
                     <select name="selectEstaEmUso" class="form-control">
-                        <option value="TRUE">Sim</option>
-                        <option value="FALSE">Não</option>
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
                     </select>
                     <label for="inputDescricaoAdicional">Descrição Adicionais:</label>
                     <textarea type="date" class="form-control" name="inputDescricaoAdicional" placeholder="Insira aqui mais alguma informação que você julgue necessária (limite de 150 caracteres)"></textarea>
