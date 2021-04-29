@@ -77,7 +77,7 @@
                     </select>
                     <label for="inputDescricaoAdicional">Descrição Adicionais:</label>
                     <textarea id="txtAreaDescricaoAdicional" type="date" class="form-control" name="inputDescricaoAdicional" value="<?php echo $dados['descricaoAdicional'] ?>" placeholder="Insira aqui mais alguma informação que você julgue necessária (limite de 150 caracteres)"></textarea>
-                    <button type="submit" class="btn btn-success btn-block">ENVIAR DADOS</button>
+                    <button type="submit" class="btn btn-success btn-block" style="margin-top:10px;">ENVIAR DADOS</button>
                 </form>
             </div>
         </div>
