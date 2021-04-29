@@ -20,8 +20,15 @@
     $dataFabricacao = str_replace("/", "-", $dataFabricacao);
     $dataFabricacaoSQL = date('Y-m-d', strtotime($dataFabricacao));
 
-    $comandoSQL = "INSERT INTO AVIOES(nomeModelo, nomeFabricante, dataFabricacao, capacidadeMaximaPassageiros, estaEmUso, descricaoAdicional) 
-    VALUES ('$nomeAviao', '$nomeFabricante', '$dataFabricacaoSQL', '$capacidadeMaxPassageiros', '$estaEmUso', '$descricaoAdicional')";
+    $estaEmUso = (int) $estaEmUso;
+
+    if($estaEmUso === 0){
+        $comandoSQL = "INSERT INTO AVIOES(nomeModelo, nomeFabricante, dataFabricacao, capacidadeMaximaPassageiros, estaEmUso, descricaoAdicional) 
+        VALUES ('$nomeAviao', '$nomeFabricante', '$dataFabricacaoSQL', '$capacidadeMaxPassageiros', 0, '$descricaoAdicional')";
+    }else{
+        $comandoSQL = "INSERT INTO AVIOES(nomeModelo, nomeFabricante, dataFabricacao, capacidadeMaximaPassageiros, estaEmUso, descricaoAdicional) 
+        VALUES ('$nomeAviao', '$nomeFabricante', '$dataFabricacaoSQL', '$capacidadeMaxPassageiros', 1, '$descricaoAdicional')";
+    }
 
     print_r($comandoSQL);
 
