@@ -1,4 +1,12 @@
 <?php
+    session_start();
+    if(!$_SESSION['logado']){
+        echo "<script>
+                alert('Erro ao acessar página! Acesso restrito: efetue o login para acessar');
+                window.location = 'index.php';
+            </script>"; 
+    }
+    
     $idAviao = (isset($_GET['id'])) ? $_GET['id'] : 'null';
 
     if ($idAviao == 'null'){
