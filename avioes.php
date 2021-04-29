@@ -39,6 +39,7 @@
                             <th scope="col">Capacidade Máxima de Passageiros</th>
                             <th scope="col">Está em Uso</th>
                             <th scope="col">Descrição Adicional</th>
+                            <th scope="col" colspan="2">Opções</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,11 +60,14 @@
                                             }else{
                                                 echo "<td style='background-color:green'>NÃO</td>";
                                             }
-                                            echo "<td>".$dados['descricaoAdicional']."</td>                               
+                                            echo "<td>".$dados['descricaoAdicional']."</td>
+                                            <td><a href='altera_avioes.php?id={$dados['idAviao']}'>Alterar</a></td>
+                                            <td><a href='exclui_avioes.php?id={$dados['idAviao']}'>Excluir</a></td>                               
                                         </tr>";
+
                                 }
                             }else{
-                                echo "<tr class='text-center'><td colspan='6'> Não há registros cadastrados! </td></tr>";
+                                echo "<tr class='text-center'><td colspan='8'> Não há registros cadastrados! </td></tr>";
                             }
                         ?>
                     </tbody>
